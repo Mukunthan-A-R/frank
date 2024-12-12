@@ -1,28 +1,40 @@
-const { createData, getData, getOneData, delData, config } = require("./index");
+const {
+  createData,
+  getData,
+  getOneData,
+  delData,
+  config,
+  createSchema,
+} = require("./index");
 
-const person = { name: "India", email: "india@gmail.com", age: 30 };
+const person = { name: "Chennai", email: "chennai@gmail.com", age: 30 };
 
+// Dynamically update the schema
 const schema = {
   name: String,
   email: String,
   age: Number,
+  country: String, // Add a new field as part of schema update
 };
 
-config.updateConfig("Allo", schema);
+// Update the schema using the createSchema function
+createSchema(schema);
 
-createData(person)
+config.updateConfig("Allo");
+
+// createData(person)
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
+
+getData()
   .then((res) => console.log(res))
   .catch((err) => console.log(err));
 
-// getData()
+// getOneData("675aa1f9e86804d37a37c928")
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
 
-// getOneData("675a785cc14849efb3f197a7")
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
-
-// delData("675a7412300836e97fb7f544")
+// delData("675aa1f9e86804d37a37c928")
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
 

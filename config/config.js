@@ -1,12 +1,8 @@
 let config = {
   dbName: "",
-  schema: {},
 
-  updateConfig: function (dbname = "playground", schemaObj) {
+  updateConfig: function (dbname = "playground") {
     this.dbName = dbname;
-    this.schema = {
-      ...schemaObj,
-    };
   },
 };
 

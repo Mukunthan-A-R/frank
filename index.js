@@ -1,22 +1,37 @@
 const mongoose = require("mongoose");
 const { config } = require("./config/config");
 
+let schema = {
+  name: String,
+  email: String,
+  age: Number,
+};
+
+// Function to update the schema dynamically
+function createSchema(schemaObj) {
+  schema = {
+    ...schemaObj,
+  };
+  // console.log("Schema updated");
+}
+
+// Connect to the MongoDB database
 mongoose
   .connect(`mongodb://localhost/${config.dbName}`)
   .then(() => {
     console.log("Connection Successful");
   })
-  .catch((err) => console.log("Connection failed" + err));
+  .catch((err) => console.log("Connection failed: " + err));
 
-const tmp = { ...config.schema };
+// Create a schema based on the current schema object
+const personSchema = new mongoose.Schema(schema);
 
-const person = new mongoose.Schema(tmp);
+// Define the Person model (compile it once)
+const Person = mongoose.model("Person", personSchema);
 
-const Person = mongoose.model("Person", person);
-
+// CRUD operations
 async function createData(person) {
   const data = new Person(person);
-
   const result = await data.save();
   return result;
 }
@@ -36,4 +51,11 @@ async function delData(id) {
   return result;
 }
 
-module.exports = { createData, getData, delData, getOneData, config };
+module.exports = {
+  createData,
+  getData,
+  delData,
+  getOneData,
+  config,
+  createSchema,
+};
