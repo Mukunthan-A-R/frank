@@ -1,0 +1,14 @@
+{
+  "name": "frank",
+  "version": "1.0.0",
+  "description": "highly managed mongoose application for API calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mukunthan",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.8.4"
+  }
+}
