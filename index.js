@@ -5,10 +5,18 @@ let schema = {};
 
 // Function to update the schema dynamically
 function createSchema(schemaObj) {
-  schema = {
-    ...schemaObj,
-  };
+  schema = { ...schemaObj };
   // console.log("Schema updated");
+
+  // Remove the old model from the cache if it exists
+  if (mongoose.models["Person"]) {
+    delete mongoose.models["Person"];
+    // console.log("Old model removed from cache");
+  }
+
+  // Recreate the Person model with the updated schema
+  const personSchema = new mongoose.Schema(schema);
+  return mongoose.model("Person", personSchema); // Return the new model
 }
 
 // Connect to the MongoDB database
@@ -19,30 +27,28 @@ mongoose
   })
   .catch((err) => console.log("Connection failed: " + err));
 
-// Create a schema based on the current schema object
-const personSchema = new mongoose.Schema(schema);
-
-// Define the Person model (compile it once)
-const Person = mongoose.model("Person", personSchema);
-
 // CRUD operations
 async function createData(person) {
+  const Person = createSchema(schema); // Use the updated schema to get the new model
   const data = new Person(person);
   const result = await data.save();
   return result;
 }
 
 async function getData() {
+  const Person = createSchema(schema); // Use the updated schema to get the new model
   const result = await Person.find();
   return result;
 }
 
 async function getOneData(id) {
+  const Person = createSchema(schema); // Use the updated schema to get the new model
   const result = await Person.findById(id);
   return result;
 }
 
 async function delData(id) {
+  const Person = createSchema(schema); // Use the updated schema to get the new model
   const result = await Person.findByIdAndDelete(id);
   return result;
 }

@@ -7,7 +7,7 @@ const {
   createSchema,
 } = require("./index");
 
-const person = { name: "Chennai", email: "chennai@gmail.com", age: 30 };
+const person = { name: "Madurai", email: "madurai@gmail.com", age: 30 };
 
 // Dynamically update the schema
 const schema = {
@@ -22,19 +22,19 @@ createSchema(schema);
 
 config.updateConfig("Allo");
 
-// createData(person)
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
+createData(person)
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
 
 getData()
   .then((res) => console.log(res))
   .catch((err) => console.log(err));
 
-// getOneData("675aa1f9e86804d37a37c928")
+// getOneData("675aa7981a398c3e400568ed")
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
 
-// delData("675aa1f9e86804d37a37c928")
+// delData("675aa78013257371527ab226")
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err));
 
