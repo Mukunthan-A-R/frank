@@ -12,12 +12,12 @@ let config = {
 
 exports.config = config;
 
-const schema = {
-  name: String,
-  email: String,
-  age: Number,
-};
+// const schema = {
+//   name: String,
+//   email: String,
+//   age: Number,
+// };
 
-config.updateConfig("Allo", schema);
+// config.updateConfig("Allo", schema);
 // console.log(config);
 // console.log(config.schema.name);

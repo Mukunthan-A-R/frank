@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const { config } = require("./config/config");
 
-if (config.schema === null) return "Config setup needed";
-
 mongoose
   .connect(`mongodb://localhost/${config.dbName}`)
   .then(() => {
