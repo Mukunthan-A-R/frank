@@ -1,11 +1,23 @@
 {
-  "name": "frank",
+  "name": "mongo-frank",
   "version": "1.0.0",
   "description": "highly managed mongoose application for API calls",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "frank",
+    "mongo-frank",
+    "mongodb",
+    "document",
+    "model",
+    "database",
+    "mongoose",
+    "database",
+    "query",
+    "db"
+  ],
   "author": "Mukunthan",
   "license": "ISC",
   "dependencies": {
