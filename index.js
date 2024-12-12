@@ -17,11 +17,7 @@ const person = new mongoose.Schema(tmp);
 const Person = mongoose.model("Person", person);
 
 async function createData(person) {
-  const data = new Person({
-    name: person.name,
-    email: person.email,
-    age: person.age,
-  });
+  const data = new Person(person);
 
   const result = await data.save();
   return result;
