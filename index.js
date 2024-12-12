@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 const { config } = require("./config/config");
 
-let schema = {
-  name: String,
-  email: String,
-  age: Number,
-};
+let schema = {};
 
 // Function to update the schema dynamically
 function createSchema(schemaObj) {
