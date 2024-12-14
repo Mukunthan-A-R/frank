@@ -59,6 +59,7 @@ $ nodemon
    - createData() -> Create the data
    - getData() -> Fetch the data
    - getOneData() -> Fetch Only one Object
+   - updateData() -> Update the Existing Data
    - delData() -> Delete the Data
 
 ## Docs
@@ -102,8 +103,21 @@ frank
   .then((res) => console.log(res))
   .catch((err) => console.log(err));
 
+// Update a single Data item
+id = "675d4c4c793ef0c47e56a277";
+let newData = {
+  name: "Jack",
+  email: "jack@gmail.com",
+  age: 30,
+  country: "USA",
+};
+frank
+  .updateData("675d4c4c793ef0c47e56a277", newData)
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
 // Delete Single Data item
-let id = "675aa7981a398c3e400568ed";
+id = "675aa7981a398c3e400568ed";
 frank
   .delData(id)
   .then((res) => console.log(res))

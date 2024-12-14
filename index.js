@@ -53,11 +53,18 @@ async function delData(id) {
   return result;
 }
 
+async function updateData(id, data) {
+  const Person = createSchema(schema); // Use the updated schema to get the new model
+  const result = await Person.findByIdAndUpdate(id, data, { new: true });
+  return result;
+}
+
 module.exports = {
   createData,
   getData,
   delData,
   getOneData,
+  updateData,
   config,
   createSchema,
 };
