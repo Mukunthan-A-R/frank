@@ -1,16 +1,14 @@
 # mongo-frank
 
-Ease for working with [MongoDB](https://www.mongodb.com/products/tools/compass) using compass,minimalist web framework for [Node.js](<(https://nodejs.org/en)>).
-mongo-frank is a tool that helps develop Node.js based applications by automatically connecting with mongodb using compass.
-This is a minimalist franework. You can directly perfrorm CRUD operations without worrying about DataBase connection.
+Ease for working with [MongoDB](https://www.mongodb.com/products/tools/compass), minimalist web framework for [Node.js](<(https://nodejs.org/en)>).
+mongo-frank is a tool that helps develop Node.js based applications by automatically connecting with mongodb.
+This is a minimalist franework for working with Database. You can directly perfrorm CRUD operations without worrying about DataBase connection,establishment or maintainance issues.
 
 ## Installation
 
-This is a Node.js module available through the npm registry.Before installing, download and install [Node.js](https://nodejs.org/en) and [MongoDB](https://www.mongodb.com/products/tools/compass) using compass.
+This is a Node.js module available through the npm registry. Before installing, download and install [Node.js](https://nodejs.org/en) and [MongoDB](https://www.mongodb.com/products/tools/compass) using compass or use Mongo Atlas.
 
-Before installing, download and install Node.js and MongoDB using compass.
-
-This package works only if you configure with Mongo compass.
+Before installing, download and install Node.js and MongoDB using compass or connect to MongoDB Atlas.
 
 If this is a brand new project, make sure to create a package.json first with the [npm init command.](https://docs.npmjs.com/creating-a-package-json-file)
 
@@ -54,21 +52,30 @@ $ nodemon
 1. Import functions from the package.
 2. Create a Schema for mongodb.
 3. Call the createSchema function and pass the your schema as the argument.
-4. Call the updateCongid function and pass a name for the database.
-5. Work with CRUD operations by calling the below functions.
+4. Call the updateConfig function and pass connection string, DataBase name and cluster name for the database.
+   updateConfig(connection string, DataBase name, Cluster Name)
+5. Call the connectDB() to establish a connection to MongoDB.
+6. Work with CRUD operations by calling the below functions.
    - createData() -> Create the data
    - getData() -> Fetch the data
    - getOneData() -> Fetch Only one Object
    - updateData() -> Update the Existing Data
    - delData() -> Delete the Data
 
+_**Note:** updateConfig should be called before making a connection to the Databse_
+
 ## Docs
 
 ```javascript
 // Require mongo-frank
 const frank = require("mongo-frank");
-// Create your Data Object
-const person = { name: "Mosh", email: "mosh@gmail.com", age: 30 };
+// Create your Data Object or pass from external resource
+const person = {
+  name: "Jack",
+  email: "jack@gmail.com",
+  age: 30,
+  country: "USA",
+};
 
 // Your Desired Schema
 const schema = {
@@ -78,11 +85,14 @@ const schema = {
   country: String,
 };
 
-// Update the schema
-frank.createSchema(schema);
+// Update the Config
+frank.config.updateConfig("mongodb://localhost", "Person", "Account");
 
-// Database Name
-frank.config.updateConfig("playground");
+// Create a connection with the MongoDB
+frank.connectDB();
+
+// Create the schema
+frank.createSchema(schema);
 
 // Create Data
 frank
@@ -126,7 +136,7 @@ frank
 
 ## Philosophy
 
-The Mongo-Frank philosophy offers simple, efficient tools for working with MongoDB Compass, simplifying database management by handling connections, CRUD operations, and instances seamlessly.
+The Mongo-Frank philosophy offers simple, efficient tools for working with MongoDB Atlas and Compass, simplifying database management by handling connections, CRUD operations, and instances seamlessly.
 
 ## People
 
