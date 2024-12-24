@@ -21,7 +21,7 @@ function createSchema(schemaObj) {
 
 function connectDB() {
   // Connect to the MongoDB database
-  const conString = `${config.cString}/${config.cName}`;
+  const conString = `${config.cString}`;
 
   mongoose
     .connect(`${conString}`)
