@@ -1,12 +1,16 @@
 let config = {
   dbName: "",
+  cName: "",
+  cString: "",
 
-  updateConfig: function (dbname = "playground") {
-    this.dbName = dbname;
+  updateConfig: function (cString, dbName = "playground", cName = "test") {
+    this.cString = cString;
+    this.dbName = dbName;
+    this.cName = cName;
   },
 };
 
-exports.config = config;
+module.exports = config;
 
 // const schema = {
 //   name: String,

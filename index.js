@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { config } = require("./config/config");
+const config = require("./config/config");
 
 let schema = {};
 
@@ -9,23 +9,28 @@ function createSchema(schemaObj) {
   // console.log("Schema updated");
 
   // Remove the old model from the cache if it exists
-  if (mongoose.models["Person"]) {
-    delete mongoose.models["Person"];
+  if (mongoose.models[`${config.cName}`]) {
+    delete mongoose.models[`${config.cName}`];
     // console.log("Old model removed from cache");
   }
 
   // Recreate the Person model with the updated schema
   const personSchema = new mongoose.Schema(schema);
-  return mongoose.model("Person", personSchema); // Return the new model
+  return mongoose.model(`${config.cName}`, personSchema); // Return the new model
 }
 
-// Connect to the MongoDB database
-mongoose
-  .connect(`mongodb://localhost/${config.dbName}`)
-  .then(() => {
-    console.log("Connection Successful");
-  })
-  .catch((err) => console.log("Connection failed: " + err));
+function connectDB() {
+  // Connect to the MongoDB database
+  const conString = `${config.cString}/${config.cName}`;
+
+  mongoose
+    .connect(`${conString}`)
+    .then(() => {
+      console.log("Connection Successful");
+    })
+    .catch((err) => console.log("Connection failed: " + err));
+  return 1;
+}
 
 // CRUD operations
 async function createData(person) {
@@ -67,4 +72,5 @@ module.exports = {
   updateData,
   config,
   createSchema,
+  connectDB,
 };
