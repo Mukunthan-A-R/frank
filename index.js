@@ -27,9 +27,12 @@ function connectDB() {
     .connect(`${conString}`)
     .then(() => {
       console.log("Connection Successful");
+      return 1;
     })
-    .catch((err) => console.log("Connection failed: " + err));
-  return 1;
+    .catch((err) => {
+      console.log("Connection failed: " + err);
+      return err;
+    });
 }
 
 // CRUD operations
